@@ -1,0 +1,121 @@
+{% comment %} <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    
+    <style>
+      
+    </style>
+</head>
+<body>
+    <h1>Update Task</h1>
+    <form method="POST" action="{% url 'update_task' task.id %}">
+        {% csrf_token %}
+         {{ form.as_p }} 
+       <div class="mb-3">
+         
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form> 
+       <label for="id_title">Title:</label>
+            <input type="text" id="id_title" name="title" required>
+
+            <label for="id_description">Description:</label>
+            <textarea id="id_description" name="description"></textarea>
+            <label for="id_completed">
+                <input type="checkbox" id="id_completed" name="completed" {% if task.completed %}checked{% endif %}>
+                Completed
+            </label>
+            <button type="submit">Update</button>
+  
+  
+</body>
+</html> {% endcomment %}
+
+
+<!-- tasks/templates/tasks/update_task.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Task</title>
+    {% comment %} <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endcomment %}
+    
+    <style>
+        /* static/css/styles.css */
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+        </style>
+
+</head>
+<body>
+    <div class="form-container">
+        <h1>Update Task</h1>
+        <form method="POST" action="{% url 'update_task' task.id %}">
+            {% csrf_token %}
+            <label for="id_title">Title:</label>
+            <input type="text" id="id_title" name="title" value="{{ task.title }}" required>
+
+            <label for="id_description">Description:</label>
+            <textarea id="id_description" name="description">{{ task.description }}</textarea>
+
+            <label for="id_completed">
+                <input type="checkbox" id="id_completed" name="completed" {% if task.completed %}checked{% endif %}>
+                Completed
+            </label>
+
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>
+

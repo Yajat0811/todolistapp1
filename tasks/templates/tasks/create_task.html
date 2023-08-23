@@ -1,0 +1,86 @@
+{% comment %} <!-- tasks/templates/tasks/create_task.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Task</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <h1>Create Task</h1>
+    <form method="POST" action="{% url 'create_task' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html> {% endcomment %}
+<!-- tasks/templates/tasks/create_task.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Task</title>
+    {% comment %} <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endcomment %}
+    <style>
+    /* styles.css */
+.form-container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+  }
+  
+  .form-container h1 {
+    text-align: center;
+  }
+  
+  .form-container label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .form-container input[type="text"],
+  .form-container textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-container button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .form-container button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Create Task</h1>
+        <form method="POST" action="{% url 'create_task' %}">
+            {% csrf_token %}
+            <label for="id_title">Title:</label>
+            <input type="text" id="id_title" name="title" required>
+
+            <label for="id_description">Description:</label>
+            <textarea id="id_description" name="description"></textarea>
+            <label for="id_completed">
+                <input type="checkbox" id="id_completed" name="completed" {% if task.completed %}checked{% endif %}>
+                Completed
+            </label>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</body>
+</html>
+
